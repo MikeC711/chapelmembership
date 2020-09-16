@@ -1,5 +1,14 @@
 # Chapelmembership
+This is the core documentation for the Application written for Membership Augmentation at Chapel By the Sea
+in Emerald Isle, NC.  It is meant to provide better info and possibly eventually lead to the pictorial directory.
 
+chapelmembership uses google firebase/firestore as the database as the volumes are low enough that we stay in the free range.  This means that environments/environment.ts and environment.prod.ts contain the info to connect to the data base.  Currently there are administrative userids and non-administrative userids.  I (Mike Casile) am looking for a way to integrate the uid keys into the data so that families can access their own info.  Ideally, I would like for folks who sign in with a "family" userid to see a small subset of what is available (ie: can only update their own family).  May be able to see other families as well.
+
+I am sure that this is in git, and I need to refresh my memory on how to make all of that work ... ideally, eventually from here in VS Code.  I'd also like to 
+Git ssh: git@github.com:MikeC711/chapelmembership.git
+Git https: https://github.com/MikeC711/chapelmembership.git
+
+# old MD info
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.8.
 
 ## Development server

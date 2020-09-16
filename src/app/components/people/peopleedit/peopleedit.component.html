@@ -1,0 +1,117 @@
+<div class="row" *ngIf="(person)">
+    <div class="col-xs-7">
+        <form (ngSubmit)="onAddPerson()" #personForm="ngForm">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName" class="form-control" [(ngModel)]="person.lastName"
+                        name="lastName" ngModel placeholder="Last Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName" class="form-control" [(ngModel)]="person.firstName"
+                        name="firstName" ngModel placeholder="First Name" required>
+                </div>
+            </div>
+            <div class="row" *ngIf="editMode"> <strong> Family Key:  </strong> {{ person.familyKey }} </div>
+            <div class="form-group">
+                    <input type="checkbox" class="form-check-input" name="visibility" value="true"
+                        checked [(ngModel)]="person.visibility">Visible
+            </div>
+            <div class="form-row">
+                <div class="form-group form-check col-md-5">
+                    <label for="memberStatus">Member Status</label>
+                    <select class="form-control" id="memberStatus" name="memberStatus"
+                        [(ngModel)]="person.memberStatus">
+                        <option *ngFor="let memStat of memStatRadio" [value]="memStat.Val"
+                            [selected]="memStat.Val == person.memberStatus">{{ memStat.Disp }}</option>
+                    </select>
+                </div>
+                <div class="form-group form-check col-md-5 float-right">
+                    <label for="contactPRef">Contact Method Preference</label>
+                    <select class="form-control" id="contactPref" name="contactPref"
+                        [(ngModel)]="person.contactPref">
+                        <option *ngFor="let contact of contactRadio" [value]="contact.Val"
+                            [selected]="contact.Val == person.contactPref">{{ contact.Disp }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="eMail">eMail Address</label>
+                    <input type="email" id="eMail" class="form-control" [(ngModel)]="person.eMail" 
+                        name="eMail" ngModel placeholder="eMail Address" email>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="number" id="phone" class="form-control" [(ngModel)]="person.phone"
+                        name="phone" ngModel placeholder="Phone" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="birthDate">Birth Date</label>
+                    <input type="date" id="birthDate" class="form-control" [(ngModel)]="person.birthDate"
+                        name="birthDate" ngModel placeholder="Birth Date" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="streetAddr">Street Address</label>
+                <input type="text" id="streetAddr" class="form-control" [(ngModel)]="person.address.streetAddr"
+                    name="streetAddr" ngModel placeholder="Street Address" required>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="city">City</label>
+                    <input type="text" id="city" class="form-control" [(ngModel)]="person.address.city"
+                        name="city" ngModel placeholder="City" required>
+                </div>
+                <div class="form-group">
+                    <label for="state">State</label>
+                    <input type="text" id="state" class="form-control" [(ngModel)]="person.address.state"
+                        name="state" ngModel placeholder="State" required>
+                </div>
+                <div class="form-group">
+                    <label for="zipCode">Zip Code</label>
+                    <input type="text" id="zipCode" class="form-control" [(ngModel)]="person.address.zipCode"
+                        name="zipCode" ngModel placeholder="Zip Code" required>
+                </div>
+            </div>
+            <div class="row">
+                <h3>Ministries</h3>
+                <ul>
+                    <li *ngFor=" let ministry of person.ministries">
+                        <a style="cursor: pointer" (click)="onDeleteMinistry(ministry)">
+                            {{ ministry }}
+                        </a>
+                    </li>
+                </ul> 
+            </div>
+            <div class="row">
+                <h3>Add Ministries</h3>
+                <div class="form-group form-check col-md-5">
+                    <select class="form-control" id="newMinistry" name="newMinistry"
+                        #newMinistry (change)="onAddMinistry(newMinistry)">
+                        <option *ngFor="let curMin of availableMinistries" [value]="curMin"
+                            >{{ curMin }}</option>
+                    </select>
+                </div>
+<!--                 <div class="col-md-2">
+                    <button class="btn btn-primary" type="button" 
+                        (click)="onAddMinistry(newMinistry)">Add</button>
+                </div> -->
+            </div>
+            <div class="row">
+                <div class="col-md-7">
+                    <button class="btn btn-success" type="submit"
+                        [disabled]="!personForm.valid">{{ editMode ? 'Update' : 'Add' }}</button>
+                    <button class="btn btn-danger" type="button"
+                        [disabled]="!editMode" (click)="onDeletePerson()">Delete</button>
+                    <button class="btn btn-primary" type="button" [routerLink]="['/members']">Cancel</button>
+                    <button class="btn btn-secondary" type="button" [disabled]="!editMode && dataSaved" 
+                        (click)="onAddWithinFamily()">Add within family</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

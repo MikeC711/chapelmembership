@@ -1,0 +1,23 @@
+<div class="row">
+    <div class="col-md-5">
+        <button class="btn btn-secondary" type="button" [routerLink]="['/ministries', 'new']">New</button>
+        <div class="row" *ngIf="ministries?.length > 0;else noMinistries">
+            <ul>
+                <li *ngFor="let ministry of ministries">
+                    <a style="cursor: pointer" [routerLink]="['/ministries', ministry.id]">
+                    <div class="row">
+                        {{ ministry.id }}
+                    </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-7">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+<ng-template #noMinistries>
+    <hr>
+    <h5>There are no ministries to list</h5>
+</ng-template>

@@ -1,0 +1,26 @@
+<div class="row">
+    <div class="col-md-5">
+        <label for="name">Enter Last Name</label>
+        <input type="text" id="name" name="name" #name>
+        <button class="btn btn-primary" type="button" (click)="onQueryName(name.value)">Search</button>
+        <button class="btn btn-secondary" type="button" [routerLink]="['/members', 'new']">New</button>
+        <div class="row" *ngIf="people?.length > 0;else noPeople">
+            <ul>
+                <li *ngFor="let person of people">
+                    <a style="cursor: pointer" [routerLink]="['/members', person.id]">
+                    <div class="row">
+                        {{ person.firstName }}  {{ person.lastName }}  {{ person.eMail }}
+                    </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-7">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+<ng-template #noPeople>
+    <hr>
+    <h5>There are no people to list</h5>
+</ng-template>

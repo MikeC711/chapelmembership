@@ -1,0 +1,75 @@
+<div class="row" *ngIf="ministry">
+    <form (ngSubmit)="onAddMinistry()" #ministryForm="ngForm">
+        <div class="form-row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="id">Ministry Name</label>
+                    <input type="text" class="form-control" [(ngModel)]="ministry.id"
+                        name="id" ngModel placeholder="Ministry Name" required>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="description">Ministry Description</label>
+                    <textarea type="text" id="description" class="form-control" [(ngModel)]="ministry.description"
+                        rows="2" name="description" ngModel placeholder="Ministry Description" required></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="mission">Ministry Mission</label>
+                    <textarea type="text" id="mission" class="form-control" [(ngModel)]="ministry.mission"
+                        rows="6" name="mission" ngModel placeholder="Ministry Mission"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <button class="btn btn-success" type="submit"
+                [disabled]="!ministryForm.valid"> {{ editMode ? 'Update' : 'Add' }}</button>
+            <button class="btn btn-danger" type="button"
+                [disabled]="!editMode" (click)="onDeleteMinistry()">Delete</button>
+            <button class="btn btn-primary" type="button" [routerLink]="['/ministries']">Cancel</button>
+            <button class="btn btn-info" type="button" (click)="onShowMembers()"
+                *ngIf="editMode"> {{ showMembers ? 'Hide Members' : 'Show Members' }}</button>
+        </div>
+        <div class="row" *ngIf="showMembers">
+            <div *ngIf="minPeopsArray">
+                Double Click to remove from ministry
+                <div class="col-md-12">
+                    <ul>
+                        <li *ngFor="let person of minPeopsArray">
+                            <a style="cursor: pointer" (dblclick)="onRemovePersonFromMinistry(person)">
+                                {{ person.firstName }}  {{ person.lastName }}<br> 
+                                {{ person.phone }}  {{ person.eMail }}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="form-group">
+                <label for="lastName">Search for people to add</label>
+                <input type="text" class="form-control" #searchName
+                    name="lastName" ngModel placeholder="Last Name">
+                <button class="btn btn-primary" (click)="onSearchPeople(searchName)">Search</button>
+            </div>
+        </div>
+        <div class="row" *ngIf="joinPeopsArray">
+            <div class="form-group">
+                <ul>
+                    <li *ngFor="let person of joinPeopsArray">
+                        <a style="cursor: pointer" (dblclick)="onAddPersonToMinistry(person)">
+                            {{ person.firstName }}  {{ person.lastName }}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </form>
+</div>
