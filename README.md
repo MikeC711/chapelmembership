@@ -8,6 +8,11 @@ I am sure that this is in git, and I need to refresh my memory on how to make al
 Git ssh: git@github.com:MikeC711/chapelmembership.git
 Git https: https://github.com/MikeC711/chapelmembership.git
 
+# Angular setup
+`npm install -g @angular/cli`
+`ng new modelApp`
+
+
 # old MD info
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.8.
 
