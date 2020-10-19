@@ -124,6 +124,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "chapelmembership"
+    }
+  },
+  "defaultProject": "chapelmembership",
+  "cli": {
+    "analytics": "b671f582-0f67-42de-a7c2-4c066beb656f"
+  }
 }

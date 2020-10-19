@@ -11,7 +11,8 @@ Git https: https://github.com/MikeC711/chapelmembership.git
 # Angular setup
 `npm install -g @angular/cli`
 `ng new modelApp`
-`sudo apt install ng-common`
+`sudo apt install ng-common`  (this was BAD)
+`npm install jquery --save`
 
 # old MD info
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.8.
